@@ -2,7 +2,7 @@ package ru.hello.dao;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import ru.hello.model.ObjectWithId;
+import ru.hello.model.Id;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -52,7 +52,7 @@ public abstract class BaseDAOImpl<T, PK extends Serializable> implements BaseDAO
 
     @Override
     public <T> T save(T entity) {
-        if (em.contains(entity) || (entity instanceof ObjectWithId && ((ObjectWithId) entity).getId() != null)) {
+        if (em.contains(entity) || (entity instanceof Id && ((Id) entity).getId() != null)) {
             entity = em.merge(entity);
         } else {
             em.persist(entity);

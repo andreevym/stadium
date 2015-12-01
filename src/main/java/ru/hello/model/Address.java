@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "address")
-public class Address extends ObjectWithIncrementId {
+public class Address extends PersistentObject {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "address", cascade = CascadeType.ALL)
     private Employee employee;
