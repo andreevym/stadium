@@ -1,22 +1,31 @@
 package ru.hello;
 
-import org.springframework.boot.*;
-import org.springframework.boot.autoconfigure.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
-@RestController
+import java.util.Arrays;
+
+@SpringBootApplication
 @EnableAutoConfiguration
+@ComponentScan("ru.hello.controller")
 public class Application {
 
-    @RequestMapping("/")
-    String home() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
+        ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
 
-        new Main().init(null);
+        System.out.println("bean provided by Spring Boot:");
+
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        Arrays.sort(beanDefinitionNames);
+
+        for (int i = 0; i< beanDefinitionNames.length; i++) {
+            System.out.printf("%s : %s %n", beanDefinitionNames[i], i);
+        }
+        
+        //new Main().init(null);
     }
 
 }

@@ -18,7 +18,6 @@ public class Main {
 
         Guest guest = new Guest();
         guest.setName("test guest");
-        System.exit(-1);
 
         session.save(guest);
         session.getTransaction().commit();
