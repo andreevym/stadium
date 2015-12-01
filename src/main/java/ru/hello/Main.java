@@ -13,9 +13,7 @@ public class Main {
         shutdownHook();
     }
 
-    public static void main(String[] args) {
-        new Main(); // init self
-
+    public static void init(String[] args) {
         session.beginTransaction();
 
         Guest guest = new Guest();
