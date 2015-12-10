@@ -2,9 +2,18 @@
 <div ng-show="authenticated">
     <p>The ID is {{greeting.id}}</p>
     <p>The content is {{greeting.content}}</p>
-
-
+    <div ng-controller="LdapController as ldapController">
+        <form role="form" ng-submit="loadUsers()">
+            <botton type="submit" value="show users"></botton>
+            <h1>Users list</h1>
+            <div ng-repeat="user in ldapController.users">
+                <h2>user</h2>
+            </div>
+        </form>
+    </div>
 </div>
 <div  ng-show="!authenticated">
     <p>Login to see your greeting</p>
 </div>
+
+<script src="js/ldapModule.js"></script>
