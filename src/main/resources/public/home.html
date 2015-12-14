@@ -1,19 +1,25 @@
-<h1>Greeting</h1>
-<div ng-show="authenticated">
-    <p>The ID is {{greeting.id}}</p>
-    <p>The content is {{greeting.content}}</p>
-    <div ng-controller="LdapController as ldapController">
-        <form role="form" ng-submit="loadUsers()">
-            <botton type="submit" value="show users"></botton>
-            <h1>Users list</h1>
-            <div ng-repeat="user in ldapController.users">
-                <h2>user</h2>
-            </div>
-        </form>
-    </div>
-</div>
-<div  ng-show="!authenticated">
-    <p>Login to see your greeting</p>
+<!doctype html>
+<html>
+<head>
+    <title>AngularJS + Spring Security + LDAP</title>
+    <link
+            href="css/angular-bootstrap.css"
+            rel="stylesheet">
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body ng-app="store" ng-cloak class="ng-cloak">
+<h1>Содержание:</h1>
+
+<div ng-show="!isAuthenticated">
+    <p>Чтобы просматривать данную страницу необходимо авторизоваться</p>
 </div>
 
-<script src="js/ldapModule.js"></script>
+<script src="js/angular-bootstrap.js" type="text/javascript"></script>
+<script src="js/storeModule.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="userTableModule">
+    <head>
+        <title>Редактирование пользователей</title>
+    </head>
+    <body ng-controller="userTableController as utc">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    Поиск: <input ng-model="searchKeyword">
+                </div>
+
+                <div class="col-md-10">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Имя</th>
+                            <th>Фамилия</th>
+                            <th>Описание</th>
+                            <th> - </th>
+                        </tr>
+                            <tr ng-repeat="user in utc.users  | filter:searchKeyword" ng-href="#/user/{{user.id}}">
+                            <td>{{user.id}}</td>
+                            <td>{{user.fullName}}</td>
+                            <td>{{user.lastName}}</td>
+                            <td>{{user.description}}</td>
+                            <td class="buttons">
+                                <input id="deleteUser"  type="button" value="Удалить" class="btn btn-primary cpui-button red tiny" ng-click="utc.deleteUserById(user.id)"/>
+                                <a id="editUserDetailsBtn" class="cpui-button grey tiny" ng-href="#/users/user/{{user.id}}">Изменить</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script src="js/angular-bootstrap.js" type="text/javascript"></script>
+        <script src="js/userTableModule.js"></script>
+    </body>
+</html>

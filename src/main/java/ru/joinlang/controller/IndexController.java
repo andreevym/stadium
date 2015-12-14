@@ -1,38 +1,37 @@
 package ru.joinlang.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.joinlang.service.LDAPService;
+import ru.joinlang.model.User;
+import ru.joinlang.service.UserService;
 
-import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @RestController
 public class IndexController {
 
     @Autowired
-    private LDAPService ldapService;
+    private UserService ldapService;
 
     @RequestMapping("/user")
-    public Principal user(Principal user) {
+    public UsernamePasswordAuthenticationToken user(UsernamePasswordAuthenticationToken user) {
         return user;
     }
 
-    @RequestMapping("/ldapUsers")
-    public List<String> getAllUsersString(Principal user) {
-        return ldapService.getAllUsersString();
+    @RequestMapping("/allNameOfUsers")
+    public List<String> findAllUserName() {
+        return ldapService.findAllUserNames();
     }
 
-    @RequestMapping("/resource")
-    public Map<String, Object> home() {
-        Map<String, Object> model = new HashMap<>();
-        model.put("id", UUID.randomUUID().toString());
-        model.put("content", "Hello World");
-        return model;
+    @RequestMapping("/allUsers")
+    public List<User> getAllUsers() {
+        return ldapService.getAll();
     }
 
+    @RequestMapping("/isAuthenticated")
+    public boolean isAuthenticated(UsernamePasswordAuthenticationToken user) {
+        return user.isAuthenticated();
+    }
 }

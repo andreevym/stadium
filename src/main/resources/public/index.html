@@ -1,7 +1,7 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html ng-app="storeModule">
 <head>
-    <title>Hello AngularJS</title>
+    <title>Главная</title>
     <link
             href="css/angular-bootstrap.css"
             rel="stylesheet">
@@ -12,16 +12,37 @@
     </style>
 </head>
 
-<body ng-app="hello" ng-cloak class="ng-cloak">
-<div ng-controller="navigation" class="container">
-    <ul class="nav nav-pills" role="tablist">
-        <li ng-class="{active:tab('home')}"><a href="#/">home</a></li>
-        <li ng-show="!authenticated"><a href="#/login">login</a></li>
-        <li ng-show="authenticated"><a href="" ng-click="logout()">logout</a></li>
-    </ul>
-</div>
-<div ng-view class="container"></div>
-<script src="js/angular-bootstrap.js" type="text/javascript"></script>
-<script src="js/main.js"></script>
+<body ng-cloak class="ng-cloak">
+    <div ng-controller="StoreController as sc" class="container">
+        <ul class="nav nav-pills" role="tablist">
+            <li ng-class="{active:tab('home')}">
+                <a href="/">Главная</a>
+            </li>
+            <li ng-hide="sc.isAuthenticated">Войти</li>
+            <li ng-show="sc.isAuthenticated">
+                <a href="" ng-controller="AuthenticationController as ac" ng-click="ac.logout()">Выйти</a>
+            </li>
+        </ul>
+    </div>
+    <h1>Пользователи</h1>
+    <div ng-controller="UserController as uc">
+        <ul class="list-group" ng-repeat="user in uc.users">
+            <li class="list-group-item">
+                <a href="">{{user.fullName}}</a>
+                <a href="">{{user.mail}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <h1>Группы</h1>
+    <div ng-controller="GroupController as gc">
+        <ul class="list-group" ng-repeat="group in gc.groups">
+            <li class="list-group-item">
+                <a href="">{{group.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <script src="js/angular-bootstrap.js" type="text/javascript"></script>
+    <script src="js/storeModule.js"></script>
 </body>
 </html>
