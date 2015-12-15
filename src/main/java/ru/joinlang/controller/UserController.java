@@ -10,7 +10,8 @@ import ru.joinlang.service.UserService;
 import java.util.List;
 
 @RestController
-public class IndexController {
+public class UserController {
+
 
     @Autowired
     private UserService ldapService;
