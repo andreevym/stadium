@@ -1,11 +1,9 @@
-# stadium
-Stadium
+# Проект "stadium"
 
-
-4ff4c82 Yury on 15.12.2015 at 11:31
 Функции:
 1) Аутентификация в приложение через Spring Security LDAP. /login
 2) Представление с пользователями и группами /index.html
+
 Структура проекта:
  Application- @SpringBootApplication, также импортирует файлы из /config.
 // для запуска прокта использовать этот класс.
